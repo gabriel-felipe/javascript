@@ -1,3 +1,21 @@
+/*Plugin para fazer select box customizado utilizando a seguinte marcação:
+<div class="pergunta select">
+	<div class="seta"></div>
+	<label title='renda_pessoal'>Selecione à renda da sua família</label>
+	<div class="opcoes">
+		<button>Nenhuma (Estudante / Desempregado)</button>
+		<button>Até R$800</button>
+		<button>De R$800 Até R$1200</button>
+		<button>De R$1200 Até R$1600</button>
+		<button>De R$1600 Até R$2500</button>
+		<button>Maior que R$2500</button>
+	</div>
+	<input type='hidden' name='renda_pessoal' />
+</div>
+select = new selectBox('.pergunta.select');
+
+Suporte a navegação por teclado.
+*/
 //--=-=-=-=-SELECT SINGLE //
 function selectBox(obj){
 //Construindo.
