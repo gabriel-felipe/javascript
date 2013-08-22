@@ -132,6 +132,7 @@ select.opcoes.css(
  });
 }
 
+/* Função para transformar todas as div.select em select box customizadas */
 function caixaformulario(){
   $('div.select').each(function(){
     var selecta = new selectBox(this);
@@ -145,74 +146,3 @@ function caixaformulario(){
 
 caixaformulario();
 
-(function( $ ) {
-  $.fn.numberBox = function() {
-    var input = this.find("input");
-    var numberHolder = this.find("p.number");
-    var numberAtual = 0;
-    var get_number = function(){
-      number = parseInt(numberHolder.html());
-      return number;
-    }
-    var soma = function(){
-      numberAtual = get_number() + 1;
-      set_number();
-    }
-    var menos = function(){
-      if(get_number() > 1){
-      numberAtual = get_number() - 1;
-      } else{
-        alert("VocÃª nÃ£o pode adicionar menos que uma peÃ§a");
-      }
-
-      set_number();
-    }
-    var set_number = function(){
-      numberHolder.html(numberAtual);
-      if(input){
-        input.val(numberAtual);
-        input.change();
-
-      }
-
-    }
-
-    var maisBt = this.find(".mais");
-    var menosBt = this.find(".menos");
-    var numberAtual = get_number();
-    
-    
-    maisBt.click(function(){
-      soma();
-    });
-    menosBt.click(function(){
-      menos();
-    });
-  }
-})( jQuery );
-$(".numberBox").numberBox();
-
-(function( $ ) {
-  $.fn.sanfona = function() {
-    var items = this.find("li");
-    items.find(".content").hide();
-
-    items.click(function(){
-      if($(this).hasClass("down")){
-        $(this).find(".content").slideUp();
-        $(this).removeClass("down");
-        $(this).find("span.mais").html("+");
-
-      } else {
-      items.find("span.mais").html("+");
-      items.find(".content").slideUp();
-      $(this).find("span.mais").html("-");
-      items.removeClass("down");
-      $(this).addClass("down");
-      $(this).find(".content").stop(false,true).slideToggle();
-      }
-
-    });
-    
-  }
-})( jQuery );
