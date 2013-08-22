@@ -72,6 +72,7 @@ validator = function(form){
     var formSeletor = form;
     var form = $(form);
     var f = this;
+    f.allowDefault = false;
     f.validates = {};
     f.get_regex = function(type,opt){
       var regex;
@@ -144,6 +145,12 @@ validator = function(form){
             pass = false;
           }
         }
+
+        if(!f.allowDefault){
+          if(inputObj[0].value == inputObj[0].defaultValue){
+            pass = false;
+          }
+        }
         if(!pass){
           countWrong++;
           f.wrongInputs[i] = input;
@@ -153,7 +160,16 @@ validator = function(form){
         input['pass'] = pass;
       }
       if(countWrong==0){
-        return true;
+        for(i in f.passedInputs){
+          var input = f.passedInputs[i];
+          if(typeof(f.validates[i]) == 'undefined' || typeof(f.validates[i].passed) == 'undefined'){
+            f.passed(formSeletor+" *[name="+input.name+"]");
+          } else {
+            f.validates[i].passed(formSeletor+" *[name="+input.name+"]");
+          }
+        }
+       return f.callback();
+       
       } else {
         for(i in f.wrongInputs){
           var input = f.wrongInputs[i];       
@@ -165,7 +181,7 @@ validator = function(form){
         }
         for(i in f.passedInputs){
           var input = f.passedInputs[i];
-          if(typeof(f.validates[i].passed) == 'undefined'){
+          if(typeof(f.validates[i]) == 'undefined' || typeof(f.validates[i].passed) == 'undefined'){
             f.passed(formSeletor+" *[name="+input.name+"]");
           } else {
             f.validates[i].passed(formSeletor+" *[name="+input.name+"]");
