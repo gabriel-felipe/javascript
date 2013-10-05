@@ -7,7 +7,11 @@
 * ----------------------------------------------------------------------------
 */
 
-/*Plugin para fazer select box customizado utilizando a seguinte marcação:
+/*
+* ----------------------------------------------Dependencias:-----------------
+* JQuery                                                                     |
+* ----------------------------------------------------------------------------
+Plugin para fazer select box customizado utilizando a seguinte marcação:
 <div class="pergunta select">
 	<div class="seta"></div>
 	<label title='renda_pessoal'>Selecione à renda da sua família</label>
@@ -33,6 +37,7 @@ form .select .opcoes button {width:100%; display: block; border:none; background
 form .select .opcoes button:last-child {.border-radius(0 0 3px 3px); }
 form .select .opcoes button.on {color:#820;}
 form .select label {margin: 0; width:100%; cursor: pointer;}
+
 */
 
 //--=-=-=-=-SELECT SINGLE //
